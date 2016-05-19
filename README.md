@@ -17,7 +17,7 @@ You have to install small script for shutdown functionality in the Raspbian.
 Configure the Raspberry Pi
 Sample of setup.sh
 
---- begen
+
     echo '#!/bin/bash
     
     #this is the GPIO pin connected to the lead on SDP0
@@ -42,7 +42,6 @@ Sample of setup.sh
     sudo chmod 777 /etc/switch.sh
     sudo sed -i '$ i /etc/switch.sh &' /etc/rc.local
     
---- end of setup.sh
 
 License Information
 
