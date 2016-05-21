@@ -17,32 +17,31 @@ You have to install small script for shutdown functionality in the Raspbian.
 Configure the Raspberry Pi
 Sample of setup.sh
 
---- begen
-echo '#!/bin/bash
 
-#this is the GPIO pin connected to the lead on SDP0
-GPIOpin1=23
+    echo '#!/bin/bash
+    
+    #this is the GPIO pin connected to the lead on SDP0
+    GPIOpin1=23
+    
+    #this is the GPIO pin connected to the lead on KA
+    GPIOpin2=24
 
-#this is the GPIO pin connected to the lead on KA
-GPIOpin2=24
-
-echo "$GPIOpin1" > /sys/class/gpio/export
-echo "in" > /sys/class/gpio/gpio$GPIOpin1/direction
-echo "$GPIOpin2" > /sys/class/gpio/export
-echo "out" > /sys/class/gpio/gpio$GPIOpin2/direction
-echo "1" > /sys/class/gpio/gpio$GPIOpin2/value
-while [ 1 = 1 ]; do
-power=$(cat /sys/class/gpio/gpio$GPIOpin1/value)
-if [ $power = 0 ]; then
-sleep 1
-else
-sudo poweroff
-fi
-done' > /etc/switch.sh
-sudo chmod 777 /etc/switch.sh
-sudo sed -i '$ i /etc/switch.sh &' /etc/rc.local
-
---- end of setup.sh
+    echo "$GPIOpin1" > /sys/class/gpio/export
+    echo "in" > /sys/class/gpio/gpio$GPIOpin1/direction
+    echo "$GPIOpin2" > /sys/class/gpio/export
+    echo "out" > /sys/class/gpio/gpio$GPIOpin2/direction
+    echo "1" > /sys/class/gpio/gpio$GPIOpin2/value
+    while [ 1 = 1 ]; do
+    power=$(cat /sys/class/gpio/gpio$GPIOpin1/value)
+    if [ $power = 0 ]; then
+    sleep 1
+    else
+    sudo poweroff
+    fi
+    done' > /etc/switch.sh
+    sudo chmod 777 /etc/switch.sh
+    sudo sed -i '$ i /etc/switch.sh &' /etc/rc.local
+    
 
 License Information
 
